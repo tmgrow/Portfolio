@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tyler Grow | Projects</title>
+<meta name="description" content="Mechanical engineering projects by Tyler Grow, Colorado State University.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500&family=Barlow+Semi+Condensed:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#f3f5f2; --panel:#ffffff; --ink:#15211b; --muted:#4d5a52;
+  --rule:#c3ccc5; --gold:#c8c372; --link:#1e4d2b;
+  --head:"Barlow Semi Condensed","Arial Narrow",Arial,sans-serif;
+  --body:"Barlow",Arial,Helvetica,sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root{--paper:#111814; --panel:#18211b; --ink:#e8eee9; --muted:#a3b0a7;
+        --rule:#34423a; --link:#9ad3a8;}
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 17px/1.6 var(--body);
+  padding:env(safe-area-inset-top,0) 0 env(safe-area-inset-bottom,0)}
+a{color:var(--link);text-underline-offset:3px}
+a:focus-visible,button:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+[hidden]{display:none!important}
+.sheet{max-width:1100px;margin:24px auto;border:2px solid var(--ink)}
+@media (max-width:1148px){.sheet{margin:12px}}
+
+header{display:flex;justify-content:space-between;align-items:flex-end;gap:20px 40px;flex-wrap:wrap;
+  padding:36px 40px 30px;border-bottom:2px solid var(--ink)}
+header h1{font:700 clamp(44px,7vw,76px)/.95 var(--head);margin:0 0 10px;letter-spacing:-.01em}
+header h1 a{color:inherit;text-decoration:none}
+.sub{margin:0;color:var(--muted);font-size:17px;max-width:46ch}
+.links{display:flex;gap:6px 20px;flex-wrap:wrap;font:600 18px var(--head)}
+@media (max-width:760px){header{padding:26px 22px 22px}}
+
+main{padding:36px 40px 44px}
+@media (max-width:760px){main{padding:24px 22px 32px}}
+
+/* grid */
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:34px 28px}
+@media (max-width:960px){.grid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:600px){.grid{grid-template-columns:1fr}}
+.tile{display:block;color:inherit;text-decoration:none}
+.thumb{position:relative;aspect-ratio:4/3;border:1px solid var(--ink);background:var(--panel);
+  display:grid;place-items:center;color:var(--muted);font-size:14px;overflow:hidden}
+.thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.tile .thumb{transition:transform .15s}
+.tile:hover .thumb{transform:translate(-3px,-3px);box-shadow:5px 5px 0 var(--ink)}
+.tile h2{font:600 23px/1.2 var(--head);margin:12px 0 2px}
+.tile p{margin:0;color:var(--muted);font-size:16px;line-height:1.45}
+
+/* detail */
+.back{display:inline-block;font:600 18px var(--head);margin:0 0 22px}
+.detail h1{font:700 clamp(34px,5vw,52px)/1.05 var(--head);margin:0 0 6px;outline:none}
+.tools{color:var(--muted);margin:0 0 24px}
+.hero{aspect-ratio:16/9;margin:0 0 28px}
+.detail .text{max-width:66ch}
+.detail .text p{margin:0 0 14px}
+.gallery{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-top:30px}
+@media (max-width:600px){.gallery{grid-template-columns:1fr}}
+.gallery .thumb{aspect-ratio:4/3}
+.nextprev{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-top:40px;padding-top:18px;
+  border-top:1px solid var(--rule);font:600 18px var(--head)}
+
+footer{border-top:2px solid var(--ink);padding:12px 40px;color:var(--muted);font-size:14px}
+@media (max-width:760px){footer{padding:12px 22px}}
+</style>
+</head>
+<body>
+<div class="sheet">
+<header>
+  <div>
+    <h1><a href="#">Tyler Grow</a></h1>
+    <p class="sub">Mechanical engineering student at Colorado State University. Seeking a Summer 2027 internship.</p>
+  </div>
+  <nav class="links" aria-label="Contact">
+    <a href="mailto:your.email@example.com">Email</a>
+    <a href="https://www.linkedin.com/in/your-profile">LinkedIn</a>
+    <a href="resume.pdf">Resume</a>
+  </nav>
+</header>
+
+<main>
+  <section id="home" aria-label="Projects"><div class="grid" id="grid"></div></section>
+  <article id="detail" class="detail" hidden></article>
+</main>
+<footer>Tyler Grow · Colorado State University · Mechanical Engineering</footer>
+</div>
+
+<script>
+/* ---------------------------------------------------------------
+   EDIT YOUR PROJECTS HERE.
+   - id: short, lowercase, no spaces (it becomes the page address)
+   - images: list of file paths in your repo's "images" folder.
+     The FIRST image is the grid thumbnail and the large top photo.
+     Missing images show a placeholder until you add the file.
+   - body: one string per paragraph
+   Add or remove projects by copying a block.
+---------------------------------------------------------------- */
+const projects = [
+  {
+    id: "dune-cable-bundles",
+    title: "DUNE cryogenic cable bundles",
+    tools: "Cleanroom assembly · Cryogenic systems · [add tools]",
+    summary: "Cleanroom assembly for a neutrino detector experiment.",
+    body: [
+      "At CSU's Engineering Research Center, I assemble cryogenic cable bundles in a cleanroom for the Deep Underground Neutrino Experiment (DUNE), an international collaboration with Fermilab and CERN.",
+      "[Add what the bundles do, how many you built, and what you learned or improved.]"
+    ],
+    images: ["images/cable-bundles-1.jpg", "images/cable-bundles-2.jpg", "images/cable-bundles-3.jpg"]
+  },
+  {
+    id: "dune-components",
+    title: "DUNE precision components",
+    tools: "Mechanical design · Manufacturing · [add CAD software]",
+    summary: "Designing and producing parts used in the main experiment.",
+    body: [
+      "I design mechanical components and subassemblies for production and experimental testing, and manufacture precision parts and hardware in volume for DUNE.",
+      "[Add a specific part, the problem it solves, and a number such as quantity produced or tolerance held.]"
+    ],
+    images: ["images/dune-parts-1.jpg", "images/dune-parts-2.jpg"]
+  },
+  {
+    id: "ram-rocketry",
+    title: "Ram Rocketry (IREC)",
+    tools: "[Add tools]",
+    summary: "Building a rocket for the Intercollegiate Rocket Engineering Competition.",
+    body: [
+      "I joined Ram Rocketry in September 2026, CSU's team for the Intercollegiate Rocket Engineering Competition (IREC).",
+      "[Add your subsystem, what you designed or tested, and the result.]"
+    ],
+    images: ["images/rocketry-1.jpg", "images/rocketry-2.jpg"]
+  },
+  {
+    id: "ram-racing",
+    title: "Ram Racing (Formula SAE EV)",
+    tools: "[Add tools]",
+    summary: "Electric Formula SAE race car, 2025 to 2026.",
+    body: [
+      "I was on Ram Racing's Formula SAE electric vehicle team from August 2025 to April 2026.",
+      "[Add what you designed, built, or tested, and the result.]"
+    ],
+    images: ["images/racing-1.jpg", "images/racing-2.jpg"]
+  },
+  {
+    id: "project-5",
+    title: "[Project name]",
+    tools: "[Tools]",
+    summary: "[One-line description.]",
+    body: ["[What it does, your role, and the result.]"],
+    images: ["images/project-5-1.jpg"]
+  },
+  {
+    id: "project-6",
+    title: "[Project name]",
+    tools: "[Tools]",
+    summary: "[One-line description.]",
+    body: ["[What it does, your role, and the result.]"],
+    images: ["images/project-6-1.jpg"]
+  }
+];
+
+const $ = id => document.getElementById(id);
+const img = (src, alt) => src ? `<img src="${src}" alt="${alt}" loading="lazy" onerror="this.remove()">` : "";
+
+$("grid").innerHTML = projects.map(p => `
+  <a class="tile" href="#${p.id}">
+    <div class="thumb"><span>Add photo</span>${img(p.images[0], p.title)}</div>
+    <h2>${p.title}</h2>
+    <p>${p.summary}</p>
+  </a>`).join("");
+
+function route() {
+  const i = projects.findIndex(p => p.id === location.hash.slice(1));
+  const home = $("home"), detail = $("detail");
+  if (i < 0) {
+    detail.hidden = true; home.hidden = false;
+    document.title = "Tyler Grow | Projects";
+    return;
+  }
+  const p = projects[i];
+  const prev = projects[(i - 1 + projects.length) % projects.length];
+  const next = projects[(i + 1) % projects.length];
+  const rest = p.images.slice(1);
+  detail.innerHTML = `
+    <a class="back" href="#">Back to all projects</a>
+    <h1 id="dtitle" tabindex="-1">${p.title}</h1>
+    <p class="tools">${p.tools}</p>
+    <div class="thumb hero"><span>Add photo</span>${img(p.images[0], p.title)}</div>
+    <div class="text">${p.body.map(t => `<p>${t}</p>`).join("")}</div>
+    ${rest.length ? `<div class="gallery">${rest.map((s, n) =>
+      `<div class="thumb"><span>Add photo</span>${img(s, p.title + " photo " + (n + 2))}</div>`).join("")}</div>` : ""}
+    <nav class="nextprev" aria-label="More projects">
+      <a href="#${prev.id}">Previous: ${prev.title}</a>
+      <a href="#${next.id}">Next: ${next.title}</a>
+    </nav>`;
+  home.hidden = true; detail.hidden = false;
+  document.title = p.title + " | Tyler Grow";
+  window.scrollTo(0, 0);
+  $("dtitle").focus({ preventScroll: true });
+}
+window.addEventListener("hashchange", route);
+route();
+</script>
+</body>
+</html>
